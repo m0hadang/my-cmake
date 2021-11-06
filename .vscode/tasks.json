@@ -1,0 +1,38 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "${workspaceRoot}/build/test/HelloTest",
+      "problemMatcher": [],
+      "dependsOn": [
+        "build-ms"
+      ]
+    },
+    {
+      "label": "build-ms",
+      "type": "shell",
+      "command": "& 'C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/devenv.exe' mohadang-markov.sln /Build Debug",
+      "options": {
+        "cwd": "${workspaceRoot}/build/"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "make",
+      "options": {
+        "cwd": "${workspaceRoot}/build/"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

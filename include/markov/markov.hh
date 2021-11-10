@@ -22,13 +22,15 @@ class Markov {
 private:
 	std::map<Prefix, std::vector<std::string>> statetab;
 	std::unique_ptr<IRandomGen> random_gen_;
-	const char* NONWORD = "\n";//일반 단어로 사용하지 못하는 단어
+	
 public:
 	Markov(std::unique_ptr<IRandomGen> random_gen);
 	void add(Prefix& prefix, const std::string& s);
 	void build(Prefix& prefix, std::istream& in);
 	void generate(int nwordsd, std::ostream& out);
+	static const char* NONWORD;//일반 단어로 사용하지 못하는 단어
 };
+
 }
 
 #endif

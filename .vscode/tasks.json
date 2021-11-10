@@ -6,7 +6,7 @@
     {
       "label": "test",
       "type": "shell",
-      "command": "${workspaceRoot}/build/test/HelloTest",
+      "command": "${workspaceRoot}/build/test/Debug/Tester",
       "problemMatcher": [],
       "dependsOn": [
         "build-ms"

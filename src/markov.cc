@@ -3,6 +3,8 @@
 
 using namespace mohadangkim;
 
+const char* Markov::NONWORD = "\n";//일반 단어로 사용하지 못하는 단어
+
 Markov::Markov(std::unique_ptr<IRandomGen> random_gen) :
   random_gen_(std::move(random_gen)) {
 }
@@ -43,6 +45,5 @@ void Markov::generate(int nwordsd, std::ostream& out) {
     prefix.pop_front();
     prefix.push_back(w);
   }
-  out << std::endl;
-  out << "(end)" << std::endl;
+  out << "(end)";
 }

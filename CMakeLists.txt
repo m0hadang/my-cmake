@@ -21,7 +21,7 @@ file(GLOB_RECURSE Sources CONFIGURE_DEPENDS
   src/*.cc
 )
 
-add_library(${This} STATIC 
+add_library(${This} STATIC
   ${Sources}
 )
 
@@ -33,4 +33,4 @@ target_link_libraries(example
   ${This}
 )
 
-# add_subdirectory(test)
+add_subdirectory(test)

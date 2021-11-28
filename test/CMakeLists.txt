@@ -12,16 +12,10 @@ set(Sources
 
 add_executable(${This} ${Sources})
 
-# if(MSVC)
-#   set_property(TARGET ${This} PROPERTY
-#               MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-# endif()
-
-             
 target_link_libraries(${This} PUBLIC
   gtest_main
   gmock_main
-  mohadang-markov
+  markov-test
 )
 
 add_test(

@@ -7,6 +7,9 @@ using namespace std;
 using namespace mohadangkim;
 using ::testing::Return;
 
+extern char* NONWORD;//::일반 단어로 사용하지 못하는 단어
+using ::NONWORD;
+
 class RandomGenMock : public IRandomGen {
 public:
 	MOCK_METHOD(int, rand, (), (override));
@@ -28,8 +31,15 @@ TEST(RANDOM_GEN, rand) {
 }
 
 TEST(MARKOV, add1) {
-	Prefix prefix;
 	Markov markov(GetRandomMock());
+	Prefix prefix;
+	std::stringstream stm;
+	stm
+		<< "Show your flowcharts and conceal your tables and I will be "
+		<< "mystified. Show your tables and your flowcharts will be "
+		<< "obvious";
+
+	markov.build(prefix, stm);
 
 	markov.add(prefix, "abc");
 	EXPECT_STREQ(prefix[0].c_str(), "abc");
@@ -68,9 +78,9 @@ TEST(MARKOV, build0) {
 
 	int i = 0;
 	for (i = 0; i < NPREF - 1; ++i) {
-		EXPECT_STREQ(prefix[i].c_str(), Markov::NONWORD);
+		EXPECT_STREQ(prefix[i].c_str(), ::NONWORD);
 	}
-	EXPECT_STREQ(prefix[i].c_str(), Markov::NONWORD);
+	EXPECT_STREQ(prefix[i].c_str(), ::NONWORD);
 
 	EXPECT_EQ(prefix.size(), NPREF);
 }
@@ -84,7 +94,7 @@ TEST(MARKOV, build1) {
 	markov.build(prefix, stm);
 
 	EXPECT_STREQ(prefix[0].c_str(), "abc");
-	EXPECT_STREQ(prefix[1].c_str(), Markov::NONWORD);
+	EXPECT_STREQ(prefix[1].c_str(), ::NONWORD);
 	EXPECT_EQ(prefix.size(), 2);
 }
 TEST(MARKOV, build2) {
@@ -97,7 +107,7 @@ TEST(MARKOV, build2) {
 	markov.build(prefix, stm);
 
 	EXPECT_STREQ(prefix[0].c_str(), "def");
-	EXPECT_STREQ(prefix[1].c_str(), Markov::NONWORD);
+	EXPECT_STREQ(prefix[1].c_str(), ::NONWORD);
 	EXPECT_EQ(prefix.size(), 2);
 }
 TEST(MARKOV, build3) {
@@ -114,7 +124,7 @@ TEST(MARKOV, build3) {
 	markov.build(prefix, stm);
 
 	EXPECT_STREQ(prefix[0].c_str(), "123");
-	EXPECT_STREQ(prefix[1].c_str(), Markov::NONWORD);
+	EXPECT_STREQ(prefix[1].c_str(), ::NONWORD);
 	EXPECT_EQ(prefix.size(), 2);
 }
 

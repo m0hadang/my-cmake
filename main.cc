@@ -18,5 +18,6 @@ int main() {
 
   markov.build(prefix, stm);
   markov.generate(MAXGEN, cout);
+  std::cout << ::NONWORD << std::endl;
   return 0;
 }

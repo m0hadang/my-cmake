@@ -7,6 +7,8 @@
 using namespace std;
 using namespace mohadangkim;
 
+extern char* NONWORD;
+
 int main() {
   Markov markov(std::make_unique<SimpleRandomGen>());
   Prefix prefix;

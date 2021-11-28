@@ -7,7 +7,7 @@ using namespace std;
 using namespace mohadangkim;
 using ::testing::Return;
 
-extern char* NONWORD;//::일반 단어로 사용하지 못하는 단어
+extern char* NONWORD;
 using ::NONWORD;
 
 class RandomGenMock : public IRandomGen {
@@ -33,14 +33,6 @@ TEST(RANDOM_GEN, rand) {
 TEST(MARKOV, add1) {
 	Markov markov(GetRandomMock());
 	Prefix prefix;
-	std::stringstream stm;
-	stm
-		<< "Show your flowcharts and conceal your tables and I will be "
-		<< "mystified. Show your tables and your flowcharts will be "
-		<< "obvious";
-
-	markov.build(prefix, stm);
-
 	markov.add(prefix, "abc");
 	EXPECT_STREQ(prefix[0].c_str(), "abc");
 	EXPECT_EQ(prefix.size(), 1);

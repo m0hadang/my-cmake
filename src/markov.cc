@@ -9,6 +9,10 @@ Markov::Markov(std::unique_ptr<IRandomGen> random_gen) :
   random_gen_(std::move(random_gen)) {
 }
 
+Markov::~Markov() {
+  random_gen_ = nullptr;
+}
+
 void Markov::add(Prefix& prefix, const std::string& s) {
   if (prefix.size() == NPREF) {
     statetab[prefix].emplace_back(s);

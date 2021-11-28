@@ -44,6 +44,7 @@ private:
 	
 public:
 	Markov(std::unique_ptr<IRandomGen> random_gen);
+	virtual ~Markov();
 	void add(Prefix& prefix, const std::string& s);
 	void build(Prefix& prefix, std::istream& in);
 	void generate(int nwordsd, std::ostream& out);
